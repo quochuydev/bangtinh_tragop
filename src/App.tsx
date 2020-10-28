@@ -1,17 +1,50 @@
-import React from 'react';
-import Container from '@material-ui/core/Container';
-import Typography from '@material-ui/core/Typography';
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
-import Box from '@material-ui/core/Box';
-import Link from '@material-ui/core/Link';
+import React, { useState } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import {
+  Input, Table, TableContainer, TableCell, TableRow, TableHead, TableBody,
+  MenuItem, Box, Link, Select, Typography, Container, Paper,
+} from '@material-ui/core';
+
+const useStyles = makeStyles({
+  table: {
+    minWidth: 650,
+  },
+});
 
 export default function App() {
-  const [age, setAge] = React.useState('');
+  const [age, setAge] = useState('');
+  const [carPrice, setCarPrice] = useState(0);
+  const [borrowingPrice, setBorrowingPrice] = useState(0);
+  const [borrowingMonthTotal, setBorrowingMonthTotal] = useState(0);
+  const [prepayPercent, setPrepayPercent] = useState(0);
+
+  const columns = [
+    {
+      key: 'period', title: 'period'
+    }
+  ]
+
+
+  function createData(name: string, calories: number, fat: number, carbs: number, protein: number) {
+    return { name, calories, fat, carbs, protein };
+  }
+
+  let rows = [
+    createData('', 0, 0, 0, 0),
+  ]
+  function refreshCalculate() {
+
+  }
+
+  function onChangeField() {
+
+  }
 
   const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     setAge(event.target.value as string);
   };
+
+  const classes = useStyles();
 
   return (
     <Container maxWidth="sm">
@@ -30,6 +63,34 @@ export default function App() {
           <MenuItem value={20}>Twenty</MenuItem>
           <MenuItem value={30}>Thirty</MenuItem>
         </Select>
+        <Input />
+
+        <TableContainer component={Paper}>
+          <Table className={classes.table} aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                <TableCell>Dessert (100g serving)</TableCell>
+                <TableCell align="right">Calories</TableCell>
+                <TableCell align="right">Fat&nbsp;(g)</TableCell>
+                <TableCell align="right">Carbs&nbsp;(g)</TableCell>
+                <TableCell align="right">Protein&nbsp;(g)</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {rows.map((row) => (
+                <TableRow key={row.name}>
+                  <TableCell component="th" scope="row">
+                    {row.name}
+                  </TableCell>
+                  <TableCell align="right">{row.calories}</TableCell>
+                  <TableCell align="right">{row.fat}</TableCell>
+                  <TableCell align="right">{row.carbs}</TableCell>
+                  <TableCell align="right">{row.protein}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
       </Box>
     </Container>
   );
