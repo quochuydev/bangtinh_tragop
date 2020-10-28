@@ -47,12 +47,14 @@ export default function App() {
   const classes = useStyles();
 
   return (
-    <Container maxWidth="sm">
+    <Container>
       <Box my={4}>
-        <Typography variant="h4" component="h1" gutterBottom>
-          Create React App v4-beta example with TypeScript
+        <Typography variant="h5" component="h5" gutterBottom>
+          BẢNG MINH HỌA GỐC VÀ LÃI PHẢI TRẢ
         </Typography>
-        <Copyright />
+        <Typography variant="h5" component="h5" gutterBottom>
+          SẢN PHẨM TRUYỀN THỐNG - THANH TOÁN GỐC LÃI  HÀNG THÁNG
+        </Typography>
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
@@ -92,6 +94,7 @@ export default function App() {
           </Table>
         </TableContainer>
       </Box>
+      <Copyright />
     </Container>
   );
 }
