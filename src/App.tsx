@@ -19,9 +19,9 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
 export default function App() {
   const [age, setAge] = useState('');
   const initData = {
-    carPrice: 0,
+    carPrice: 0, borrowingPrice: 0, prepayPercent: 0,
   }
-  const [data, setData] = useState(initData);
+  const [data, setData] = useState<{ carPrice: number; borrowingPrice: number; prepayPercent: number }>(initData);
   const [carPrice, setCarPrice] = useState(0);
   const [borrowingPrice, setBorrowingPrice] = useState(0);
   const [borrowingMonthTotal, setBorrowingMonthTotal] = useState(0);
@@ -30,7 +30,7 @@ export default function App() {
   const columns = [
     {
       key: 'period', title: 'period'
-    }
+    },
   ]
 
 
@@ -41,14 +41,19 @@ export default function App() {
   let rows = [
     createData(1, 0, 0, 0, 0),
   ]
-  function refreshCalculate() {
 
+  function refreshCalculate() {
+    if (data.carPrice != 0) {
+      data.prepayPercent = (data.borrowingPrice / data.carPrice) * 100;
+    }
+    console.log(data);
   }
 
   let onChangeField = (e: React.ChangeEvent<{ name: string, value: unknown }>) => {
-    console.log(e.target.name)
-    console.log(e.target.value)
-    setData({ ...data, [e.target.name]: e.target.value })
+    const name = e.target.name as keyof typeof data;
+    let value: number = Number(e.target.value);
+    setData({ ...data, [name]: value });
+    refreshCalculate();
   }
 
   const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
@@ -69,7 +74,7 @@ export default function App() {
 
         <FormControl className={classes.formControl}>
           <InputLabel shrink htmlFor="age-native-label-placeholder">
-            Age
+            Kỳ hạn
         </InputLabel>
           <NativeSelect
             value={10}
@@ -82,8 +87,14 @@ export default function App() {
           </NativeSelect>
         </FormControl>
 
-        <TextField id="carPrice" label="Giá xe" defaultValue={initData.carPrice}
+        <TextField id="carPrice" label="Giá xe" value={data.carPrice}
           type="number" name="carPrice" onChange={onChangeField} />
+
+        <TextField id="borrowingPrice" label="Số tiền cần vay (VNĐ)" value={data.borrowingPrice}
+          type="number" name="borrowingPrice" onChange={onChangeField} />
+
+        <TextField id="prepayPercent" label="Trả trước (%)" value={data.prepayPercent}
+          type="number" name="prepayPercent" onChange={onChangeField} />
 
         <TableContainer component={Paper}>
           <Table className={classes.table} aria-label="simple table">
