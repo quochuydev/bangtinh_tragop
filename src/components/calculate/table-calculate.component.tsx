@@ -60,8 +60,6 @@ export const TableCalculateComponent: React.FunctionComponent<Props> = props => 
 
   return (
     <div>
-      {JSON.stringify(props.tableCalculate)}
-      <br />
       <FormControl className={classes.formControl}>
         <InputLabel shrink htmlFor="age-native-label-placeholder">
           Thời gian vay (Tháng)

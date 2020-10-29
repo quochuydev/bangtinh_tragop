@@ -4,7 +4,7 @@ export type TableCalculateState = TableCalculate;
 
 export const tableCalculateReducer = (
   state: TableCalculateState = {
-    month: 12,
+    month: 36,
     carPrice: 1200000000,
     borrowingPrice: 240000000,
     prepayPercent: 0,
@@ -31,15 +31,22 @@ export const tableCalculateReducer = (
           data.prepayPercent = (data.borrowingPrice / data.carPrice) * 100;
         }
       }
-      data.rows = [createData(0, 0, 0, 0, 0)];
+      let pricePerMonth = data.borrowingPrice / data.month;
+
+      data.rows = [createData(0, 0, 0, 0, data.borrowingPrice)];
       for (let i = 1; i <= data.month; i++) {
-        let data_row = {};
+        let data_row = {
+          precentBank: 0, debt_last: 0, interest: 0, recurring_number: 0,
+        };
         if (i <= data.discountMonths) {
-          data.precentBank = 0.699;
+          data_row.precentBank = 0.0699;
         } else {
-          data.precentBank = 0.1085;
+          data_row.precentBank = 0.1085;
         }
-        let row = createData(i, 0, 0, 0, 0);
+        data_row.debt_last = data.rows[i - 1]['debt'];
+        data_row.interest = data_row.debt_last * data_row.precentBank / 12
+        data_row.recurring_number = data_row.interest + pricePerMonth;
+        let row = createData(i, data_row.recurring_number, data_row.interest, pricePerMonth, data_row.debt_last - pricePerMonth);
         data.rows.push(row);
       }
       return data;
