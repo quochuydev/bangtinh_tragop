@@ -6,6 +6,8 @@ import {
   NativeSelect, FormControl, InputLabel,
 } from '@material-ui/core';
 
+import { NumberSetterContainer } from './components'
+
 const useStyles = makeStyles((theme: Theme) => createStyles({
   table: {
     minWidth: 650,
@@ -17,22 +19,16 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
 }));
 
 export default function App() {
-  const [age, setAge] = useState('');
   const initData = {
     carPrice: 0, borrowingPrice: 0, prepayPercent: 0,
   }
   const [data, setData] = useState<{ carPrice: number; borrowingPrice: number; prepayPercent: number }>(initData);
-  const [carPrice, setCarPrice] = useState(0);
-  const [borrowingPrice, setBorrowingPrice] = useState(0);
-  const [borrowingMonthTotal, setBorrowingMonthTotal] = useState(0);
-  const [prepayPercent, setPrepayPercent] = useState(0);
 
   const columns = [
     {
       key: 'period', title: 'period'
     },
   ]
-
 
   function createData(period: number, recurring_number: number, interest: number, origin: number, debt: number) {
     return { period, recurring_number, interest, origin, debt };
@@ -43,11 +39,18 @@ export default function App() {
   ]
 
   function refreshCalculate() {
-    if (data.carPrice != 0) {
-      data.prepayPercent = (data.borrowingPrice / data.carPrice) * 100;
-    }
-    console.log(data);
+
   }
+
+  let years = [
+    { value: 1, name: '1 năm (12 tháng)' },
+    { value: 2, name: '2 năm (24 tháng)' },
+    { value: 3, name: '3 năm (36 tháng)' },
+    { value: 4, name: '4 năm (48 tháng)' },
+    { value: 5, name: '5 năm (60 tháng)' },
+    { value: 6, name: '6 năm (72 tháng)' },
+    { value: 7, name: '7 năm (84 tháng)' },
+  ]
 
   let onChangeField = (e: React.ChangeEvent<{ name: string, value: unknown }>) => {
     const name = e.target.name as keyof typeof data;
@@ -55,10 +58,6 @@ export default function App() {
     setData({ ...data, [name]: value });
     refreshCalculate();
   }
-
-  const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setAge(event.target.value as string);
-  };
 
   const classes = useStyles();
 
@@ -72,18 +71,20 @@ export default function App() {
           SẢN PHẨM TRUYỀN THỐNG - THANH TOÁN GỐC LÃI  HÀNG THÁNG
         </Typography>
 
+
+        <NumberSetterContainer />
+        
         <FormControl className={classes.formControl}>
           <InputLabel shrink htmlFor="age-native-label-placeholder">
-            Kỳ hạn
+            Thời gian vay (Tháng)
         </InputLabel>
           <NativeSelect
-            value={10}
-            onChange={handleChange}
-            inputProps={{ name: 'age', id: 'age-native-label-placeholder', }}          >
-            <option value="">None</option>
-            <option value={10}>Ten</option>
-            <option value={20}>Twenty</option>
-            <option value={30}>Thirty</option>
+            value={1}
+            onChange={e => { }}
+            inputProps={{ name: 'age', id: 'age-native-label-placeholder', }}>
+            {
+              years.map(e => <option key={e.value} value={e.value}>{e.name}</option>)
+            }
           </NativeSelect>
         </FormControl>
 
