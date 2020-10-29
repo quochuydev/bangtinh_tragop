@@ -3,9 +3,24 @@ export interface BaseAction {
   payload: any;
 }
 
+export interface PeriodLine {
+  period: number;
+  recurring_number: number;
+  interest: number;
+  origin: number;
+  debt: number;
+  precentBank: number;
+}
+
+interface PeriodLines extends Array<PeriodLine>{}
+
 export interface TableCalculate {
-  year: number;
+  month: number;
   carPrice: number;
   borrowingPrice: number;
   prepayPercent: number;
+  rows: PeriodLines;
+  precentBankBefore: number;
+  precentBankAfter: number;
+  discountMonths: number;
 }

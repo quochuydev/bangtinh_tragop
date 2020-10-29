@@ -10,11 +10,9 @@ export function* watchNewGeneratedNumberRequestStart() {
 }
 
 function* requestNewGeneratedNumber(e: any) {
-  console.log('requestNewGeneratedNumber', e)
   switch (e.type) {
     case 'GET_NUMBER_REQUEST_START':
       const generatedNumber = yield call(generateNewNumber);
-      console.log(generatedNumber)
       yield put(numberRequestCompletedAction(generatedNumber));
       break;
     default:

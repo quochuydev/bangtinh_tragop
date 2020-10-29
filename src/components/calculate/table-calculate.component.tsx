@@ -28,17 +28,22 @@ export const TableCalculateComponent: React.FunctionComponent<Props> = props => 
   }
 
   let onChangeSelect = (e: React.ChangeEvent<{ name: string, value: unknown }>) => {
-    props.onRefreshCalculate({ [e.target.name]: e.target.value });
+    let value = Number(e.target.value)
+    props.onRefreshCalculate({ [e.target.name]: value });
   }
 
-  let years = [
-    { value: 1, name: '1 năm (12 tháng)' },
-    { value: 2, name: '2 năm (24 tháng)' },
-    { value: 3, name: '3 năm (36 tháng)' },
-    { value: 4, name: '4 năm (48 tháng)' },
-    { value: 5, name: '5 năm (60 tháng)' },
-    { value: 6, name: '6 năm (72 tháng)' },
-    { value: 7, name: '7 năm (84 tháng)' },
+  React.useEffect(() => {
+    props.onRefreshCalculate({});
+  }, [])
+
+  let months = [
+    { value: 12, name: '1 năm (12 tháng)' },
+    { value: 24, name: '2 năm (24 tháng)' },
+    { value: 36, name: '3 năm (36 tháng)' },
+    { value: 48, name: '4 năm (48 tháng)' },
+    { value: 60, name: '5 năm (60 tháng)' },
+    { value: 72, name: '6 năm (72 tháng)' },
+    { value: 84, name: '7 năm (84 tháng)' },
   ]
 
   function createData(period: number, recurring_number: number, interest: number, origin: number, debt: number) {
@@ -62,11 +67,11 @@ export const TableCalculateComponent: React.FunctionComponent<Props> = props => 
           Thời gian vay (Tháng)
         </InputLabel>
         <NativeSelect
-          value={data.year}
+          value={data.month}
           onChange={e => { onChangeSelect(e) }}
-          inputProps={{ name: 'year', id: 'age-native-label-placeholder', }}>
+          inputProps={{ name: 'month', id: 'age-native-label-placeholder', }}>
           {
-            years.map(e => <option key={e.value} value={e.value}>{e.name}</option>)
+            months.map(e => <option key={e.value} value={e.value}>{e.name}</option>)
           }
         </NativeSelect>
       </FormControl>
@@ -92,7 +97,7 @@ export const TableCalculateComponent: React.FunctionComponent<Props> = props => 
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row) => (
+            {data.rows.map((row) => (
               <TableRow key={row.period}>
                 <TableCell align="right">{row.period}</TableCell>
                 <TableCell align="right">{row.recurring_number}</TableCell>
