@@ -23,7 +23,10 @@ interface Props {
 
 export const TableCalculateComponent: React.FunctionComponent<Props> = props => {
   let onChangeNumber = (e: React.ChangeEvent<{ name: string, value: unknown }>) => {
-    let value = Number(e.target.value)
+    let value = Number(e.target.value);
+    if (!value) {
+      value = 0;
+    }
     props.onRefreshCalculate({ [e.target.name]: value });
   }
 
@@ -44,14 +47,6 @@ export const TableCalculateComponent: React.FunctionComponent<Props> = props => 
     { value: 60, name: '5 năm (60 tháng)' },
     { value: 72, name: '6 năm (72 tháng)' },
     { value: 84, name: '7 năm (84 tháng)' },
-  ]
-
-  function createData(period: number, recurring_number: number, interest: number, origin: number, debt: number) {
-    return { period, recurring_number, interest, origin, debt };
-  }
-
-  let rows = [
-    createData(1, 0, 0, 0, 0),
   ]
 
   const classes = useStyles();
