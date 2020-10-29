@@ -9,8 +9,15 @@ export function* watchNewGeneratedNumberRequestStart() {
   );
 }
 
-function* requestNewGeneratedNumber() {
-  console.log('requestNewGeneratedNumber')
-  const generatedNumber = yield call(generateNewNumber);
-  yield put(numberRequestCompletedAction(generatedNumber));
+function* requestNewGeneratedNumber(e: any) {
+  console.log('requestNewGeneratedNumber', e)
+  switch (e.type) {
+    case 'GET_NUMBER_REQUEST_START':
+      const generatedNumber = yield call(generateNewNumber);
+      console.log(generatedNumber)
+      yield put(numberRequestCompletedAction(generatedNumber));
+      break;
+    default:
+      break;
+  }
 }

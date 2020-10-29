@@ -6,7 +6,7 @@ import {
   NativeSelect, FormControl, InputLabel,
 } from '@material-ui/core';
 
-import { NumberSetterContainer } from './components'
+import { NumberSetterContainer, TableCalculateContainer } from './components'
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
   table: {
@@ -70,57 +70,7 @@ export default function App() {
         <Typography variant="h5" component="h5" gutterBottom>
           SẢN PHẨM TRUYỀN THỐNG - THANH TOÁN GỐC LÃI  HÀNG THÁNG
         </Typography>
-
-
-        <NumberSetterContainer />
-        
-        <FormControl className={classes.formControl}>
-          <InputLabel shrink htmlFor="age-native-label-placeholder">
-            Thời gian vay (Tháng)
-        </InputLabel>
-          <NativeSelect
-            value={1}
-            onChange={e => { }}
-            inputProps={{ name: 'age', id: 'age-native-label-placeholder', }}>
-            {
-              years.map(e => <option key={e.value} value={e.value}>{e.name}</option>)
-            }
-          </NativeSelect>
-        </FormControl>
-
-        <TextField id="carPrice" label="Giá xe" value={data.carPrice}
-          type="number" name="carPrice" onChange={onChangeField} />
-
-        <TextField id="borrowingPrice" label="Số tiền cần vay (VNĐ)" value={data.borrowingPrice}
-          type="number" name="borrowingPrice" onChange={onChangeField} />
-
-        <TextField id="prepayPercent" label="Trả trước (%)" value={data.prepayPercent}
-          type="number" name="prepayPercent" onChange={onChangeField} />
-
-        <TableContainer component={Paper}>
-          <Table className={classes.table} aria-label="simple table">
-            <TableHead>
-              <TableRow>
-                <TableCell align="right">Kỳ</TableCell>
-                <TableCell align="right">Số trả định kỳ</TableCell>
-                <TableCell align="right">Lãi</TableCell>
-                <TableCell align="right">Gốc</TableCell>
-                <TableCell align="right">Dư nợ</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {rows.map((row) => (
-                <TableRow key={row.period}>
-                  <TableCell align="right">{row.period}</TableCell>
-                  <TableCell align="right">{row.recurring_number}</TableCell>
-                  <TableCell align="right">{row.interest}</TableCell>
-                  <TableCell align="right">{row.origin}</TableCell>
-                  <TableCell align="right">{row.debt}</TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+        <TableCalculateContainer />
       </Box>
       <Copyright />
     </Container>

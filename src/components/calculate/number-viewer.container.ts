@@ -1,10 +1,15 @@
 import { connect } from 'react-redux';
 import { NumberSetterComponent } from './number-viewer.component';
+import { State } from '../../reducers';
 import { BaseAction } from '../../common'
+
+const mapStateToProps = (state: State) => ({
+  numberCollection: state.numberCollection,
+});
 
 const numberRequestStartAction = (): BaseAction => ({
   type: 'GET_NUMBER_REQUEST_START',
-  payload: null,
+  payload: {},
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
@@ -12,6 +17,6 @@ const mapDispatchToProps = (dispatch: any) => ({
 });
 
 export const NumberSetterContainer = connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(NumberSetterComponent);
