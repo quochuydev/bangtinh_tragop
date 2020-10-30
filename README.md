@@ -1,8 +1,4 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
+## Demo, Embed to your site
 
 https://quochuydev.github.io/bangtinh_tragop/
 
