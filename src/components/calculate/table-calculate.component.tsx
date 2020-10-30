@@ -5,6 +5,8 @@ import {
   MenuItem, Box, Link, Select, Typography, Container, Paper, TextField,
   NativeSelect, FormControl, InputLabel,
 } from '@material-ui/core';
+import NumberFormat from 'react-number-format';
+
 import { TableCalculate } from '../../common'
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
@@ -93,10 +95,18 @@ export const TableCalculateComponent: React.FunctionComponent<Props> = props => 
             {data.rows.map((row) => (
               <TableRow key={row.period}>
                 <TableCell align="right">{row.period}</TableCell>
-                <TableCell align="right">{row.recurring_number}</TableCell>
-                <TableCell align="right">{row.interest}</TableCell>
-                <TableCell align="right">{row.origin}</TableCell>
-                <TableCell align="right">{row.debt}</TableCell>
+                <TableCell align="right">
+                  <NumberFormat value={row.recurring_number} displayType={'text'} thousandSeparator={true} suffix={' đ'} />
+                </TableCell>
+                <TableCell align="right">
+                  <NumberFormat value={row.interest} displayType={'text'} thousandSeparator={true} suffix={' đ'} />
+                </TableCell>
+                <TableCell align="right">
+                  <NumberFormat value={row.origin} displayType={'text'} thousandSeparator={true} suffix={' đ'} />
+                </TableCell>
+                <TableCell align="right">
+                  <NumberFormat value={row.debt} displayType={'text'} thousandSeparator={true} suffix={' đ'} />
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
