@@ -32,6 +32,14 @@ export const TableCalculateComponent: React.FunctionComponent<Props> = props => 
     props.onRefreshCalculate({ [e.target.name]: value });
   }
 
+  let onChangeField = (name: string, value: unknown | null) => {
+    value = Number(value);
+    if (!value) {
+      value = null;
+    }
+    props.onRefreshCalculate({ [name]: value });
+  }
+
   let onChangeSelect = (e: React.ChangeEvent<{ name: string, value: unknown }>) => {
     let value = Number(e.target.value)
     props.onRefreshCalculate({ [e.target.name]: value });
@@ -71,14 +79,26 @@ export const TableCalculateComponent: React.FunctionComponent<Props> = props => 
         </NativeSelect>
       </FormControl>
 
-      <TextField id="carPrice" label="Giá xe" value={data.carPrice}
-        type="number" name="carPrice" onChange={onChangeNumber} />
+      <FormControl className={classes.formControl}>
+        <label htmlFor="carPrice">Giá xe</label>
+        <NumberFormat id="carPrice" customInput={TextField} onValueChange={e => {
+          onChangeField('carPrice', e.floatValue);
+        }} value={data.carPrice} thousandSeparator={true} suffix={' đ'} />
+      </FormControl>
 
-      <TextField id="borrowingPrice" label="Số tiền cần vay (VNĐ)" value={data.borrowingPrice}
-        type="number" name="borrowingPrice" onChange={onChangeNumber} />
+      <FormControl className={classes.formControl}>
+        <label htmlFor="borrowingPrice">Số tiền cần vay (VNĐ)</label>
+        <NumberFormat id="borrowingPrice" customInput={TextField} onValueChange={e => {
+          onChangeField('borrowingPrice', e.floatValue);
+        }} value={data.borrowingPrice} thousandSeparator={true} suffix={' đ'} />
+      </FormControl>
 
-      <TextField id="prepayPercent" label="Trả trước (%)" value={data.prepayPercent}
-        type="number" name="prepayPercent" onChange={onChangeNumber} />
+      <FormControl className={classes.formControl}>
+        <label htmlFor="prepayPercent">Trả trước (%)</label>
+        <NumberFormat id="prepayPercent" customInput={TextField} onValueChange={e => {
+          onChangeField('prepayPercent', e.floatValue);
+        }} value={data.prepayPercent} thousandSeparator={true} suffix={' %'}  disabled={true}/>
+      </FormControl>
 
       <TableContainer component={Paper}>
         <Table className={classes.table} aria-label="simple table">
