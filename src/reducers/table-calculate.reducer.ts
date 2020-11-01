@@ -10,7 +10,7 @@ export const tableCalculateReducer = (
     borrowingPrice: 240000000,
     prepayPercent: 0,
     rows: [],
-    precentBankBefore: 0.699,
+    precentBankBefore: 0.0699,
     precentBankAfter: 0.1085,
     discountMonths: 6
   },
@@ -41,9 +41,9 @@ export const tableCalculateReducer = (
           precentBank: 0, debt_last: 0, interest: 0, recurring_number: 0, origin: 0, debt: 0,
         };
         if (i <= data.discountMonths) {
-          data_row.precentBank = 0.0699;
+          data_row.precentBank = data.precentBankBefore;
         } else {
-          data_row.precentBank = 0.1085;
+          data_row.precentBank = data.precentBankAfter;
         }
         data_row.debt_last = data.rows[i - 1]['debt'];
         data_row.interest = data_row.debt_last * data_row.precentBank / 12;
