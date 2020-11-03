@@ -5,9 +5,9 @@ export type TableCalculateState = TableCalculate;
 
 export const tableCalculateReducer = (
   state: TableCalculateState = {
-    month: 24,
-    carPrice: 1200000000,
-    borrowingPrice: 240000000,
+    month: 60,
+    carPrice: 0,
+    borrowingPrice: 0,
     prepayPercent: 0,
     rows: [],
     precentBankBefore: 0.0699,

@@ -12,7 +12,7 @@ export interface PeriodLine {
   precentBank: number;
 }
 
-interface PeriodLines extends Array<PeriodLine>{}
+interface PeriodLines extends Array<PeriodLine> { }
 
 export interface TableCalculate {
   month: number;

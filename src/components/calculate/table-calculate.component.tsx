@@ -92,13 +92,14 @@ export const TableCalculateComponent: React.FunctionComponent<Props> = props => 
               value={data.month}
               onChange={e => { onChangeSelect(e) }}
               inputProps={{ name: 'month', id: 'month', }}>
+              {/* <option key={0} value={0}>-- Vui lòng chọn --</option> */}
               {
                 months.map(e => <option key={e.value} value={e.value}>{e.name}</option>)
               }
             </NativeSelect>
           </FormControl>
           <FormControl className={classes.formControl}>
-            <label htmlFor="prepayPercent" style={{ fontWeight: 'bold' }}>Trả trước (%)</label>
+            <label htmlFor="prepayPercent" style={{ fontWeight: 'bold' }}>Ngân hàng hỗ trợ (%)</label>
             <NumberFormat id="prepayPercent" customInput={TextField} onValueChange={e => {
               onChangeField('prepayPercent', e.floatValue);
             }} value={data.prepayPercent} thousandSeparator={true} suffix={' %'} disabled={true} />
