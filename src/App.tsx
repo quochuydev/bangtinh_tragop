@@ -54,11 +54,8 @@ export default function App() {
   return (
     <Container>
       <Box my={4}>
-        <Typography variant="h5" component="h5" gutterBottom>
-          BẢNG MINH HỌA GỐC VÀ LÃI PHẢI TRẢ
-        </Typography>
-        <Typography variant="h5" component="h5" gutterBottom>
-          SẢN PHẨM TRUYỀN THỐNG - THANH TOÁN GỐC LÃI  HÀNG THÁNG
+        <Typography variant="h5" component="h5" style={{ textAlign: 'center' }} gutterBottom>
+          BẢNG MINH HỌA SỐ TIỀN GỐC VÀ LÃI PHẢI TRẢ HÀNG THÁNG
         </Typography>
         <TableCalculateContainer />
       </Box>
