@@ -54,13 +54,13 @@ export default function App() {
   return (
     <Container>
       <Box my={4}>
-        <Typography variant="h5" component="h5" style={{ textAlign: 'center' }} gutterBottom>
+        <Typography variant="h5" component="h5" style={{ textAlign: 'center', fontWeight: 'bold' }} >
           BẢNG MINH HỌA SỐ TIỀN GỐC VÀ LÃI PHẢI TRẢ HÀNG THÁNG
         </Typography>
         <TableCalculateContainer />
       </Box>
       <Copyright />
-    </Container>
+    </Container >
   );
 }
 

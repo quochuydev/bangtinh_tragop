@@ -28,6 +28,9 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     color: 'red !important' as 'red',
     fontWeight: 'bold !important' as 'bold',
     backgroundColor: 'rgba(206, 17, 38, 0.05)'
+  },
+  selectBox: {
+    marginTop: '0 !important',
   }
 }));
 interface Props {
@@ -72,22 +75,20 @@ export const TableCalculateComponent: React.FunctionComponent<Props> = props => 
       <Grid container spacing={3}>
         <Grid item sm={5}>
           <FormControl className={classes.formControl}>
-            <label htmlFor="carPrice">Giá xe</label>
+            <label htmlFor="carPrice" style={{ fontWeight: 'bold' }}>Giá xe</label>
             <NumberFormat id="carPrice" customInput={TextField} onValueChange={e => {
               onChangeField('carPrice', e.floatValue);
             }} value={data.carPrice} thousandSeparator={true} suffix={' đ'} />
           </FormControl>
           <FormControl className={classes.formControl}>
-            <label htmlFor="borrowingPrice">Số tiền cần vay (VNĐ)</label>
+            <label htmlFor="borrowingPrice" style={{ fontWeight: 'bold' }}>Số tiền cần vay (VNĐ)</label>
             <NumberFormat id="borrowingPrice" customInput={TextField} onValueChange={e => {
               onChangeField('borrowingPrice', e.floatValue);
             }} value={data.borrowingPrice} thousandSeparator={true} suffix={' đ'} />
           </FormControl>
           <FormControl className={classes.formControl}>
-            <InputLabel shrink htmlFor="month">
-              Thời gian vay (Tháng)
-</InputLabel>
-            <NativeSelect
+            <label htmlFor="month" style={{ fontWeight: 'bold' }}>Thời gian vay (Tháng)</label>
+            <NativeSelect className={classes.selectBox}
               value={data.month}
               onChange={e => { onChangeSelect(e) }}
               inputProps={{ name: 'month', id: 'month', }}>
@@ -97,18 +98,18 @@ export const TableCalculateComponent: React.FunctionComponent<Props> = props => 
             </NativeSelect>
           </FormControl>
           <FormControl className={classes.formControl}>
-            <label htmlFor="prepayPercent">Trả trước (%)</label>
+            <label htmlFor="prepayPercent" style={{ fontWeight: 'bold' }}>Trả trước (%)</label>
             <NumberFormat id="prepayPercent" customInput={TextField} onValueChange={e => {
               onChangeField('prepayPercent', e.floatValue);
             }} value={data.prepayPercent} thousandSeparator={true} suffix={' %'} disabled={true} />
           </FormControl>
           <FormControl className={classes.formControl}>
-            <label htmlFor="precentBankBefore">Lãi suất vay năm (cố định 6 tháng đầu)</label>
+            <label htmlFor="precentBankBefore" style={{ fontWeight: 'bold' }}>Lãi suất vay năm (cố định 6 tháng đầu)</label>
             <NumberFormat id="precentBankBefore" customInput={TextField}
               value={data.precentBankBefore * 100} thousandSeparator={true} suffix={' %'} disabled={true} />
           </FormControl>
           <FormControl className={classes.formControl}>
-            <label htmlFor="precentBankAfter">Lãi suất vay năm (sau điều chỉnh)</label>
+            <label htmlFor="precentBankAfter" style={{ fontWeight: 'bold' }}>Lãi suất vay năm (sau điều chỉnh)</label>
             <NumberFormat id="precentBankAfter" customInput={TextField}
               value={data.precentBankAfter * 100} thousandSeparator={true} suffix={' %'} disabled={true} />
           </FormControl>
@@ -122,20 +123,21 @@ export const TableCalculateComponent: React.FunctionComponent<Props> = props => 
             <p>6. Khách hàng kiểm tra xe trước khi giải ngân.</p>
             <p>7. Ngân hàng giải ngân.</p>
             <p>8. Khách hàng nhận toàn bộ hồ sơ xe và nhận xe.</p>
-            <p>9. Hoàn thành. Quy trình mua xe trả góp tại Hino Vĩnh Thịnh sẽ hoàn thành từ 20-25 tùy vào dòng xe cũng như thỏa thuận giữa khách hàng và Hino Vĩnh Thịnh.</p>
-            <h2>Hồ sơ cần chuẩn bị đối với khách hàng cá nhân:</h2>
+            <p>9. Hoàn thành.</p>
+            <p><i>Quy trình mua xe trả góp tại Hino Vĩnh Thịnh sẽ hoàn thành từ 20-25 tùy vào dòng xe cũng như thỏa thuận giữa khách hàng và Hino Vĩnh Thịnh.</i></p>
+            <h2>Hồ sơ đối với khách hàng cá nhân:</h2>
             <p>1. Chứng minh nhân dân hoặc Thẻ căn cước công dân.</p>
             <p> 2. Sổ hộ khẩu.</p>
             <p>3. Giấy đăng kí hết hôn hoặc giấy chứng nhận độc thân.</p>
             <p>4. Hợp đồng mua xe.</p>
             <p>5. Chứng minh thu nhập (có thể có hoặc không).</p>
-            <h2>Hồ sơ cần chuẩn bị đối với doanh nghiệp:</h2>
-            <p>1. Giấp phép đăng kí kinh doanh (Công ty phải hoạt động trên 6 tháng).</p>
+            <h2>Hồ sơ đối với khách hàng doanh nghiệp:</h2>
+            <p>1. Giấp phép đăng kí kinh doanh (Hoạt động trên 6 tháng).</p>
             <p>2. Thông tin của chủ doanh nghiệp.</p>
             <p>3. Báo cáo tài chính gần đây nhất.</p>
             <p>4. Tờ khai quyết toán doanh nghiệp gần đây nhất.</p>
-            <p> 5. Điều lệ công ty.</p>
-            <p> 6. Hợp đồng mua xe.</p>
+            <p>5. Điều lệ công ty.</p>
+            <p>6. Hợp đồng mua xe.</p>
           </div>
         </Grid>
         <Grid item sm={7}>
@@ -143,11 +145,11 @@ export const TableCalculateComponent: React.FunctionComponent<Props> = props => 
             <Table className={classes.table} aria-label="simple table">
               <TableHead>
                 <TableRow>
-                  <TableCell align="right">Kỳ</TableCell>
-                  <TableCell align="right">Số trả định kỳ</TableCell>
-                  <TableCell align="right">Lãi</TableCell>
-                  <TableCell align="right">Gốc</TableCell>
-                  <TableCell align="right">Dư nợ</TableCell>
+                  <TableCell align="right" style={{ fontWeight: 'bold' }}>Kỳ</TableCell>
+                  <TableCell align="right" style={{ fontWeight: 'bold' }}>Số trả định kỳ</TableCell>
+                  <TableCell align="right" style={{ fontWeight: 'bold' }}>Lãi</TableCell>
+                  <TableCell align="right" style={{ fontWeight: 'bold' }}>Gốc</TableCell>
+                  <TableCell align="right" style={{ fontWeight: 'bold' }}>Dư nợ</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
