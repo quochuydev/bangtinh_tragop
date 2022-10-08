@@ -1,5 +1,6 @@
 {
-  "name": "tragop",
+  "homepage": "http://quochuydev.github.com/bangtinh_tragop",
+  "name": "tragop-ts",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

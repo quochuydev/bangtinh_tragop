@@ -201,8 +201,8 @@ export const TableCalculateComponent: React.FunctionComponent<Props> = (
             <p>
               <i>
                 Quy trình mua xe trả góp tại Hino Vĩnh Thịnh sẽ hoàn thành từ
-                20-25 tùy vào dòng xe cũng như thỏa thuận giữa khách hàng và
-                Hino Vĩnh Thịnh.
+                20-25 ngày tùy vào dòng xe cũng như thỏa thuận giữa khách hàng
+                và Hino Vĩnh Thịnh.
               </i>
             </p>
             <h2>Hồ sơ đối với khách hàng cá nhân:</h2>
