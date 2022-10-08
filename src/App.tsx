@@ -1,26 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { Box, Link, Typography, Container } from "@material-ui/core";
 
-function App() {
+import { TableCalculateContainer } from "./components";
+
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <Container>
+      <Box my={4}>
+        <Typography
+          variant="h5"
+          component="h5"
+          style={{ textAlign: "center", fontWeight: "bold" }}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          BẢNG MINH HỌA SỐ TIỀN GỐC VÀ LÃI PHẢI TRẢ HÀNG THÁNG
+        </Typography>
+        <TableCalculateContainer />
+      </Box>
+      {/* <Copyright /> */}
+    </Container>
   );
 }
 
-export default App;
+function Copyright() {
+  return (
+    <Typography variant="body2" color="textSecondary" align="center">
+      {"Copyright © "}
+      <Link
+        color="inherit"
+        href={"https://quochuydev.github.io/bangtinh_tragop/"}
+      >
+        quochuydev
+      </Link>{" "}
+      {new Date().getFullYear()}.
+    </Typography>
+  );
+}
