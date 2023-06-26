@@ -82,11 +82,66 @@ export const TableCalculateComponent: React.FunctionComponent<Props> = (
 
   const classes = useStyles();
 
+  const isMobile = () => {
+    const userAgent =
+      global["navigator"]?.userAgent || global["navigator"]?.vendor;
+
+    return (
+      /windows phone/i.test(userAgent) ||
+      /android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        userAgent
+      )
+    );
+  };
+
+  const renderDescription = () => {
+    return (
+      <div>
+        <h2>Thủ tục mua xe trả góp tại Hino Vĩnh Thịnh:</h2>
+        <p>1. Mua xe tại Hino Vĩnh Thịnh</p>
+        <p>2. Hino Vĩnh Thịnh chuẩn bị hồ sơ cho khách hàng.</p>
+        <p>
+          3. Ngân hàng thẩm định (gọi điện thoại hỏi thăm sau đó sẽ trực tiếp
+          xuống nhà).
+        </p>
+        <p>4. Ngân hàng gửi thông báo cho vay đến Hino Vĩnh Thịnh</p>
+        <p>
+          5. Hino Vĩnh Thịnh sẽ gửi cho khách hàng và khách hàng thanh toán đợt
+          2 để tiến hành đóng thùng theo yêu cầu khách hàng và đi đăng kí xe.
+        </p>
+        <p>6. Khách hàng kiểm tra xe trước khi giải ngân.</p>
+        <p>7. Ngân hàng giải ngân.</p>
+        <p>8. Khách hàng nhận toàn bộ hồ sơ xe và nhận xe.</p>
+        <p>9. Hoàn thành.</p>
+        <p>
+          <i>
+            Quy trình mua xe trả góp tại Hino Vĩnh Thịnh sẽ hoàn thành từ 20-25
+            tùy vào dòng xe cũng như thỏa thuận giữa khách hàng và Hino Vĩnh
+            Thịnh.
+          </i>
+        </p>
+        <h2>Hồ sơ đối với khách hàng cá nhân:</h2>
+        <p>1. Chứng minh nhân dân hoặc Thẻ căn cước công dân.</p>
+        <p> 2. Sổ hộ khẩu.</p>
+        <p>3. Giấy đăng kí hết hôn hoặc giấy chứng nhận độc thân.</p>
+        <p>4. Hợp đồng mua xe.</p>
+        <p>5. Chứng minh thu nhập (có thể có hoặc không).</p>
+        <h2>Hồ sơ đối với khách hàng doanh nghiệp:</h2>
+        <p>1. Giấp phép đăng kí kinh doanh (Hoạt động trên 6 tháng).</p>
+        <p>2. Thông tin của chủ doanh nghiệp.</p>
+        <p>3. Báo cáo tài chính gần đây nhất.</p>
+        <p>4. Tờ khai quyết toán doanh nghiệp gần đây nhất.</p>
+        <p>5. Điều lệ công ty.</p>
+        <p>6. Hợp đồng mua xe.</p>
+      </div>
+    );
+  };
+
   let data = props.tableCalculate;
 
   return (
     <div>
-      <Grid container spacing={3}>
+      <Grid container={!isMobile()}>
         <Grid item sm={5}>
           <FormControl className={classes.formControl}>
             <label htmlFor="carPrice" style={{ fontWeight: "bold" }}>
@@ -181,45 +236,8 @@ export const TableCalculateComponent: React.FunctionComponent<Props> = (
               disabled={true}
             />
           </FormControl>
-          <div>
-            <h2>Thủ tục mua xe trả góp tại Hino Vĩnh Thịnh:</h2>
-            <p>1. Mua xe tại Hino Vĩnh Thịnh</p>
-            <p>2. Hino Vĩnh Thịnh chuẩn bị hồ sơ cho khách hàng.</p>
-            <p>
-              3. Ngân hàng thẩm định (gọi điện thoại hỏi thăm sau đó sẽ trực
-              tiếp xuống nhà).
-            </p>
-            <p>4. Ngân hàng gửi thông báo cho vay đến Hino Vĩnh Thịnh</p>
-            <p>
-              5. Hino Vĩnh Thịnh sẽ gửi cho khách hàng và khách hàng thanh toán
-              đợt 2 để tiến hành đóng thùng theo yêu cầu khách hàng và đi đăng
-              kí xe.
-            </p>
-            <p>6. Khách hàng kiểm tra xe trước khi giải ngân.</p>
-            <p>7. Ngân hàng giải ngân.</p>
-            <p>8. Khách hàng nhận toàn bộ hồ sơ xe và nhận xe.</p>
-            <p>9. Hoàn thành.</p>
-            <p>
-              <i>
-                Quy trình mua xe trả góp tại Hino Vĩnh Thịnh sẽ hoàn thành từ
-                20-25 tùy vào dòng xe cũng như thỏa thuận giữa khách hàng và
-                Hino Vĩnh Thịnh.
-              </i>
-            </p>
-            <h2>Hồ sơ đối với khách hàng cá nhân:</h2>
-            <p>1. Chứng minh nhân dân hoặc Thẻ căn cước công dân.</p>
-            <p> 2. Sổ hộ khẩu.</p>
-            <p>3. Giấy đăng kí hết hôn hoặc giấy chứng nhận độc thân.</p>
-            <p>4. Hợp đồng mua xe.</p>
-            <p>5. Chứng minh thu nhập (có thể có hoặc không).</p>
-            <h2>Hồ sơ đối với khách hàng doanh nghiệp:</h2>
-            <p>1. Giấp phép đăng kí kinh doanh (Hoạt động trên 6 tháng).</p>
-            <p>2. Thông tin của chủ doanh nghiệp.</p>
-            <p>3. Báo cáo tài chính gần đây nhất.</p>
-            <p>4. Tờ khai quyết toán doanh nghiệp gần đây nhất.</p>
-            <p>5. Điều lệ công ty.</p>
-            <p>6. Hợp đồng mua xe.</p>
-          </div>
+
+          {!isMobile() && renderDescription()}
         </Grid>
         <Grid item sm={7}>
           <TableContainer component={Paper}>
@@ -297,6 +315,8 @@ export const TableCalculateComponent: React.FunctionComponent<Props> = (
           </TableContainer>
         </Grid>
       </Grid>
+
+      <Grid>{isMobile() && renderDescription()}</Grid>
     </div>
   );
 };

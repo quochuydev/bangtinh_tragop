@@ -38,7 +38,6 @@ export const tableCalculateReducer = (
 
       let total_recurring_number: number = 0;
       let total_interest: number = 0;
-      let total_origin: number = 0;
 
       for (let i = 1; i <= data.month; i++) {
         let data_row = {
