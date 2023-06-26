@@ -9,3 +9,10 @@ https://xetaigianat.com/tra-gop/
 ```
 
 react typescript + redux saga
+
+
+```
+npm config set proxy null
+
+npm config set https-proxy null
+```
