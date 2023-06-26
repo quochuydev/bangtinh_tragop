@@ -8,7 +8,7 @@ export default function App() {
       <Typography
         variant="h5"
         component="h5"
-        style={{ textAlign: "center", fontWeight: "bold" }}
+        style={{ textAlign: "center", fontWeight: "bold", padding: 30 }}
       >
         BẢNG MINH HỌA SỐ TIỀN GỐC VÀ LÃI PHẢI TRẢ HÀNG THÁNG
       </Typography>
