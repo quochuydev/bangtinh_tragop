@@ -97,17 +97,20 @@ export const TableCalculateComponent: React.FunctionComponent<Props> = (
   const renderDescription = () => {
     return (
       <div>
-        <h2>Thủ tục mua xe trả góp tại Hino Vĩnh Thịnh:</h2>
-        <p>1. Mua xe tại Hino Vĩnh Thịnh</p>
-        <p>2. Hino Vĩnh Thịnh chuẩn bị hồ sơ cho khách hàng.</p>
+        <h2>Thủ tục mua xe trả góp cùng Hino Vlog:</h2>
+        <p>
+          1. Mua xe tại và ký hợp đồng cùng Hino Vlog tại Đại lý Hino chính
+          hãng.
+        </p>
+        <p>2. Hino Vlog chuẩn bị hồ sơ cho khách hàng.</p>
         <p>
           3. Ngân hàng thẩm định (gọi điện thoại hỏi thăm sau đó sẽ trực tiếp
           xuống nhà).
         </p>
-        <p>4. Ngân hàng gửi thông báo cho vay đến Hino Vĩnh Thịnh</p>
+        <p>4. Ngân hàng gửi thông báo cho vay đến đại lý Hino chính hãng.</p>
         <p>
-          5. Hino Vĩnh Thịnh sẽ gửi cho khách hàng và khách hàng thanh toán đợt
-          2 để tiến hành đóng thùng theo yêu cầu khách hàng và đi đăng kí xe.
+          5. Đại lý Hino sẽ gửi cho khách hàng và khách hàng thanh toán đợt 2 để
+          tiến hành đóng thùng theo yêu cầu khách hàng và đi đăng kí xe.
         </p>
         <p>6. Khách hàng kiểm tra xe trước khi giải ngân.</p>
         <p>7. Ngân hàng giải ngân.</p>
@@ -115,14 +118,14 @@ export const TableCalculateComponent: React.FunctionComponent<Props> = (
         <p>9. Hoàn thành.</p>
         <p>
           <i>
-            Quy trình mua xe trả góp tại Hino Vĩnh Thịnh sẽ hoàn thành từ 20-25
-            tùy vào dòng xe cũng như thỏa thuận giữa khách hàng và Hino Vĩnh
-            Thịnh.
+            Quy trình mua xe trả góp cùng Hino Vlog sẽ hoàn thành từ 20-25 ngày
+            tùy vào dòng xe cũng như thỏa thuận giữa Khách hàng và Đại lý Hino
+            chính hãng.
           </i>
         </p>
         <h2>Hồ sơ đối với khách hàng cá nhân:</h2>
         <p>1. Chứng minh nhân dân hoặc Thẻ căn cước công dân.</p>
-        <p> 2. Sổ hộ khẩu.</p>
+        <p>2. Sổ hộ khẩu.</p>
         <p>3. Giấy đăng kí hết hôn hoặc giấy chứng nhận độc thân.</p>
         <p>4. Hợp đồng mua xe.</p>
         <p>5. Chứng minh thu nhập (có thể có hoặc không).</p>
