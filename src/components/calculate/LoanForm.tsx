@@ -18,6 +18,15 @@ export const LoanForm: React.FC<LoanFormProps> = ({ data, onFieldChange, onSelec
     [onFieldChange]
   );
 
+  const handlePercentChange = useCallback(
+    (name: string) => (values: { floatValue?: number }) => {
+      const value = values.floatValue;
+      // Convert from percentage (e.g., 6.99) to decimal (e.g., 0.0699)
+      onFieldChange(name, value !== undefined ? value / 100 : null);
+    },
+    [onFieldChange]
+  );
+
   const handleSelectChange = useCallback(
     (e: React.ChangeEvent<HTMLSelectElement>) => {
       onSelectChange(e.target.name, Number(e.target.value));
@@ -97,16 +106,32 @@ export const LoanForm: React.FC<LoanFormProps> = ({ data, onFieldChange, onSelec
       </FormControl>
 
       <FormControl fullWidth>
+        <InputLabel shrink htmlFor="discountMonths" sx={{ fontWeight: 'bold' }}>
+          Số tháng ưu đãi lãi suất
+        </InputLabel>
+        <NumericFormat
+          id="discountMonths"
+          customInput={TextField}
+          onValueChange={handleValueChange('discountMonths')}
+          value={data.discountMonths}
+          decimalScale={0}
+          variant="outlined"
+          size="small"
+          sx={{ mt: 2 }}
+        />
+      </FormControl>
+
+      <FormControl fullWidth>
         <InputLabel shrink htmlFor="precentBankBefore" sx={{ fontWeight: 'bold' }}>
-          Lãi suất vay năm (cố định 6 tháng đầu)
+          Lãi suất vay năm (trong thời gian ưu đãi)
         </InputLabel>
         <NumericFormat
           id="precentBankBefore"
           customInput={TextField}
+          onValueChange={handlePercentChange('precentBankBefore')}
           value={data.precentBankBefore * 100}
-          thousandSeparator
+          decimalScale={2}
           suffix=" %"
-          disabled
           variant="outlined"
           size="small"
           sx={{ mt: 2 }}
@@ -115,15 +140,15 @@ export const LoanForm: React.FC<LoanFormProps> = ({ data, onFieldChange, onSelec
 
       <FormControl fullWidth>
         <InputLabel shrink htmlFor="precentBankAfter" sx={{ fontWeight: 'bold' }}>
-          Lãi suất vay năm (sau điều chỉnh)
+          Lãi suất vay năm (sau ưu đãi)
         </InputLabel>
         <NumericFormat
           id="precentBankAfter"
           customInput={TextField}
+          onValueChange={handlePercentChange('precentBankAfter')}
           value={data.precentBankAfter * 100}
-          thousandSeparator
+          decimalScale={2}
           suffix=" %"
-          disabled
           variant="outlined"
           size="small"
           sx={{ mt: 2 }}

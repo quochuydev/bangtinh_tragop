@@ -48,7 +48,7 @@ export const TableCalculateComponent: React.FC<Props> = ({ onRefreshCalculate, t
           )}
         </Grid>
         <Grid item xs={12} sm={7}>
-          <LoanTable rows={tableCalculate.rows} />
+          <LoanTable rows={tableCalculate.rows} discountMonths={tableCalculate.discountMonths} />
         </Grid>
       </Grid>
 

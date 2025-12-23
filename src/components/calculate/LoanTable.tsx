@@ -9,14 +9,15 @@ import {
   Paper,
 } from '@mui/material';
 import { NumericFormat } from 'react-number-format';
-import { PeriodLine, LOAN_CONSTANTS } from '../../common';
+import { PeriodLine } from '../../common';
 
 interface LoanTableProps {
   rows: PeriodLine[];
+  discountMonths: number;
 }
 
-const getRowStyle = (index: number, totalRows: number) => {
-  if (index > 0 && index <= LOAN_CONSTANTS.PROMOTIONAL_PERIOD_MONTHS) {
+const getRowStyle = (index: number, totalRows: number, discountMonths: number) => {
+  if (index > 0 && index <= discountMonths) {
     return { backgroundColor: '#eee' };
   }
   if (index + 1 === totalRows) {
@@ -33,7 +34,7 @@ const CurrencyCell: React.FC<{ value: number | null }> = ({ value }) => (
   <NumericFormat value={value} displayType="text" thousandSeparator suffix=" đ" />
 );
 
-export const LoanTable: React.FC<LoanTableProps> = ({ rows }) => {
+export const LoanTable: React.FC<LoanTableProps> = ({ rows, discountMonths }) => {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="loan calculation table">
@@ -58,7 +59,7 @@ export const LoanTable: React.FC<LoanTableProps> = ({ rows }) => {
         </TableHead>
         <TableBody>
           {rows.map((row, index) => (
-            <TableRow key={row.period || `row-${index}`} sx={getRowStyle(index, rows.length)}>
+            <TableRow key={row.period || `row-${index}`} sx={getRowStyle(index, rows.length, discountMonths)}>
               <TableCell align="right">{row.period}</TableCell>
               <TableCell align="right">
                 <CurrencyCell value={row.recurring_number} />
