@@ -1,16 +1,11 @@
-import { createStore, compose, applyMiddleware } from 'redux';
-import createSagaMiddleware from 'redux-saga';
-import { rootReducers } from './reducers';
-import { rootSaga } from './sagas';
+import { configureStore } from '@reduxjs/toolkit';
+import { tableCalculateReducer } from './reducers/table-calculate.reducer';
 
-const sagaMiddleware = createSagaMiddleware();
+export const store = configureStore({
+  reducer: {
+    tableCalculate: tableCalculateReducer,
+  },
+});
 
-const composeEnhancer = compose;
-
-export const store = createStore(
-  rootReducers,
-  {},
-  composeEnhancer(applyMiddleware(sagaMiddleware))
-);
-
-sagaMiddleware.run(rootSaga);
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;

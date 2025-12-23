@@ -1,18 +1,14 @@
-## Demo, Embed to your site
+### Demo
 
 https://quochuydev.github.io/bangtinh_tragop/
 
-https://xetaigianat.com/tra-gop/
+https://hinovlog.vn/tu-van-tra-gop/
 
-```
-<embed style="display: block; width: 100%; height: 1000px;" src="https://quochuydev.github.io/bangtinh_tragop/" />
-```
+### Embed to your site
 
-react typescript + redux saga
-
-
-```
-npm config set proxy null
-
-npm config set https-proxy null
+```html
+<embed
+  style="display: block; width: 100%; height: 1000px;"
+  src="https://quochuydev.github.io/bangtinh_tragop/"
+/>
 ```
