@@ -22,7 +22,6 @@ export interface PeriodLine {
 export interface TableCalculate {
   month: number;
   borrowingPrice: number;
-  prepayPercent: number;
   rows: PeriodLine[];
   precentBankBefore: number;
   precentBankAfter: number;

@@ -63,23 +63,6 @@ export const LoanForm: React.FC<LoanFormProps> = ({ data, onFieldChange }) => {
       </FormControl>
 
       <FormControl fullWidth>
-        <InputLabel shrink htmlFor="prepayPercent" sx={{ fontWeight: 'bold' }}>
-          Ngân hàng hỗ trợ (%)
-        </InputLabel>
-        <NumericFormat
-          id="prepayPercent"
-          customInput={TextField}
-          onValueChange={handleValueChange('prepayPercent')}
-          value={data.prepayPercent}
-          decimalScale={2}
-          suffix=" %"
-          variant="outlined"
-          size="small"
-          sx={{ mt: 2 }}
-        />
-      </FormControl>
-
-      <FormControl fullWidth>
         <InputLabel shrink htmlFor="discountMonths" sx={{ fontWeight: 'bold' }}>
           Số tháng ưu đãi lãi suất
         </InputLabel>
