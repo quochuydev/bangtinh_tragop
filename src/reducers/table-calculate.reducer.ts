@@ -6,7 +6,7 @@ export type TableCalculateState = TableCalculate;
 
 const initialState: TableCalculateState = {
   month: 60,
-  borrowingPrice: 0,
+  borrowingPrice: 500000000,
   rows: [],
   precentBankBefore: LOAN_CONSTANTS.DEFAULT_INTEREST_RATE_FIRST_6_MONTHS,
   precentBankAfter: LOAN_CONSTANTS.DEFAULT_INTEREST_RATE_AFTER,
