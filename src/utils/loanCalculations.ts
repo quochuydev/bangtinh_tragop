@@ -74,10 +74,3 @@ export function calculateInstallmentSchedule(params: LoanParams): PeriodLine[] {
 
   return rows;
 }
-
-export function calculatePrepayPercent(borrowingPrice: number, carPrice: number): number {
-  if (!carPrice || carPrice <= 0) {
-    return 0;
-  }
-  return (borrowingPrice / carPrice) * 100;
-}

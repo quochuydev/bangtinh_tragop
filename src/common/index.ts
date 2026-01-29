@@ -21,7 +21,6 @@ export interface PeriodLine {
 
 export interface TableCalculate {
   month: number;
-  carPrice: number;
   borrowingPrice: number;
   prepayPercent: number;
   rows: PeriodLine[];
@@ -36,14 +35,3 @@ export const LOAN_CONSTANTS = {
   DEFAULT_INTEREST_RATE_AFTER: 0.1085, // 10.85%
   PROMOTIONAL_PERIOD_MONTHS: 6,
 } as const;
-
-// Month options for loan terms
-export const MONTH_OPTIONS = [
-  { value: 12, name: '1 năm (12 tháng)' },
-  { value: 24, name: '2 năm (24 tháng)' },
-  { value: 36, name: '3 năm (36 tháng)' },
-  { value: 48, name: '4 năm (48 tháng)' },
-  { value: 60, name: '5 năm (60 tháng)' },
-  { value: 72, name: '6 năm (72 tháng)' },
-  { value: 84, name: '7 năm (84 tháng)' },
-] as const;

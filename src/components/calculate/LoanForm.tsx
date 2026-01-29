@@ -1,15 +1,14 @@
 import React, { useCallback } from 'react';
-import { FormControl, TextField, NativeSelect, Box, InputLabel } from '@mui/material';
+import { FormControl, TextField, Box, InputLabel } from '@mui/material';
 import { NumericFormat } from 'react-number-format';
-import { TableCalculate, MONTH_OPTIONS } from '../../common';
+import { TableCalculate } from '../../common';
 
 interface LoanFormProps {
   data: TableCalculate;
   onFieldChange: (name: string, value: number | null) => void;
-  onSelectChange: (name: string, value: number) => void;
 }
 
-export const LoanForm: React.FC<LoanFormProps> = ({ data, onFieldChange, onSelectChange }) => {
+export const LoanForm: React.FC<LoanFormProps> = ({ data, onFieldChange }) => {
   const handleValueChange = useCallback(
     (name: string) => (values: { floatValue?: number }) => {
       const value = values.floatValue;
@@ -27,32 +26,8 @@ export const LoanForm: React.FC<LoanFormProps> = ({ data, onFieldChange, onSelec
     [onFieldChange]
   );
 
-  const handleSelectChange = useCallback(
-    (e: React.ChangeEvent<HTMLSelectElement>) => {
-      onSelectChange(e.target.name, Number(e.target.value));
-    },
-    [onSelectChange]
-  );
-
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-      <FormControl fullWidth>
-        <InputLabel shrink htmlFor="carPrice" sx={{ fontWeight: 'bold' }}>
-          Giá xe
-        </InputLabel>
-        <NumericFormat
-          id="carPrice"
-          customInput={TextField}
-          onValueChange={handleValueChange('carPrice')}
-          value={data.carPrice}
-          thousandSeparator
-          suffix=" đ"
-          variant="outlined"
-          size="small"
-          sx={{ mt: 2 }}
-        />
-      </FormControl>
-
       <FormControl fullWidth>
         <InputLabel shrink htmlFor="borrowingPrice" sx={{ fontWeight: 'bold' }}>
           Số tiền cần vay (VNĐ)
@@ -74,18 +49,17 @@ export const LoanForm: React.FC<LoanFormProps> = ({ data, onFieldChange, onSelec
         <InputLabel shrink htmlFor="month" sx={{ fontWeight: 'bold' }}>
           Thời gian vay (Tháng)
         </InputLabel>
-        <NativeSelect
+        <NumericFormat
+          id="month"
+          customInput={TextField}
+          onValueChange={handleValueChange('month')}
           value={data.month}
-          onChange={handleSelectChange}
-          inputProps={{ name: 'month', id: 'month' }}
+          decimalScale={0}
+          suffix=" tháng"
+          variant="outlined"
+          size="small"
           sx={{ mt: 2 }}
-        >
-          {MONTH_OPTIONS.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.name}
-            </option>
-          ))}
-        </NativeSelect>
+        />
       </FormControl>
 
       <FormControl fullWidth>
@@ -95,10 +69,10 @@ export const LoanForm: React.FC<LoanFormProps> = ({ data, onFieldChange, onSelec
         <NumericFormat
           id="prepayPercent"
           customInput={TextField}
+          onValueChange={handleValueChange('prepayPercent')}
           value={data.prepayPercent}
-          thousandSeparator
+          decimalScale={2}
           suffix=" %"
-          disabled
           variant="outlined"
           size="small"
           sx={{ mt: 2 }}

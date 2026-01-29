@@ -25,13 +25,6 @@ export const TableCalculateComponent: React.FC<Props> = ({ onRefreshCalculate, t
     [onRefreshCalculate]
   );
 
-  const handleSelectChange = useCallback(
-    (name: string, value: number) => {
-      onRefreshCalculate({ [name]: value });
-    },
-    [onRefreshCalculate]
-  );
-
   return (
     <Box>
       <Grid container spacing={3} direction={isMobile ? 'column' : 'row'}>
@@ -39,7 +32,6 @@ export const TableCalculateComponent: React.FC<Props> = ({ onRefreshCalculate, t
           <LoanForm
             data={tableCalculate}
             onFieldChange={handleFieldChange}
-            onSelectChange={handleSelectChange}
           />
           {!isMobile && (
             <Box sx={{ mt: 3 }}>
