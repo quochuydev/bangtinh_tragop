@@ -128,14 +128,14 @@ export const LoanForm: React.FC<LoanFormProps> = ({ data, onFieldChange }) => {
       </FormControl>
 
       {summary && (
-        <Paper elevation={2} sx={{ p: 2, mt: 1, backgroundColor: '#f5f5f5' }}>
+        <Paper elevation={2} sx={{ p: 2, mt: 1, backgroundColor: '#f5f5f5', maxWidth: '100%', boxSizing: 'border-box' }}>
           <Typography variant="subtitle1" sx={{ fontWeight: 'bold', mb: 1.5 }}>
             Tóm tắt khoản vay
           </Typography>
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
-            <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-              <Typography variant="body2">Trả hàng tháng:</Typography>
-              <Typography variant="body2" sx={{ fontWeight: 'bold' }}>
+            <Box sx={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: 0.5 }}>
+              <Typography variant="body2" sx={{ flexShrink: 0 }}>Trả hàng tháng:</Typography>
+              <Typography variant="body2" sx={{ fontWeight: 'bold', textAlign: 'right' }}>
                 <NumericFormat
                   value={summary.monthlyPayment}
                   displayType="text"
@@ -144,9 +144,9 @@ export const LoanForm: React.FC<LoanFormProps> = ({ data, onFieldChange }) => {
                 />
               </Typography>
             </Box>
-            <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-              <Typography variant="body2">Tổng tiền lãi:</Typography>
-              <Typography variant="body2" sx={{ fontWeight: 'bold', color: 'error.main' }}>
+            <Box sx={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: 0.5 }}>
+              <Typography variant="body2" sx={{ flexShrink: 0 }}>Tổng tiền lãi:</Typography>
+              <Typography variant="body2" sx={{ fontWeight: 'bold', color: 'error.main', textAlign: 'right' }}>
                 <NumericFormat
                   value={summary.totalInterest}
                   displayType="text"
@@ -155,9 +155,9 @@ export const LoanForm: React.FC<LoanFormProps> = ({ data, onFieldChange }) => {
                 />
               </Typography>
             </Box>
-            <Box sx={{ display: 'flex', justifyContent: 'space-between', borderTop: '1px solid #ddd', pt: 1 }}>
-              <Typography variant="body2">Tổng tiền phải trả:</Typography>
-              <Typography variant="body2" sx={{ fontWeight: 'bold' }}>
+            <Box sx={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: 0.5, borderTop: '1px solid #ddd', pt: 1 }}>
+              <Typography variant="body2" sx={{ flexShrink: 0 }}>Tổng tiền phải trả:</Typography>
+              <Typography variant="body2" sx={{ fontWeight: 'bold', textAlign: 'right' }}>
                 <NumericFormat
                   value={summary.totalPayment}
                   displayType="text"
