@@ -36,8 +36,8 @@ const CurrencyCell: React.FC<{ value: number | null }> = ({ value }) => (
 
 export const LoanTable: React.FC<LoanTableProps> = ({ rows, discountMonths }) => {
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="loan calculation table">
+    <TableContainer component={Paper} sx={{ maxWidth: '100%', overflowX: 'auto' }}>
+      <Table sx={{ minWidth: { xs: 'auto', sm: 650 } }} aria-label="loan calculation table">
         <TableHead>
           <TableRow>
             <TableCell align="right" sx={{ fontWeight: 'bold' }}>

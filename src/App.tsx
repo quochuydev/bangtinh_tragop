@@ -4,7 +4,7 @@ import { TableCalculateContainer } from './components';
 
 export default function App() {
   return (
-    <Container maxWidth="lg">
+    <Container maxWidth="lg" sx={{ px: { xs: 1, sm: 2, md: 3 }, overflow: 'hidden' }}>
       <Typography
         variant="h5"
         component="h1"
