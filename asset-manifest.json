@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/bangtinh_tragop/static/css/main.61eb2e62.css",
-    "main.js": "/bangtinh_tragop/static/js/main.b829dfe7.js",
+    "main.css": "/bangtinh_tragop/static/css/main.80e6f801.css",
+    "main.js": "/bangtinh_tragop/static/js/main.7da339d3.js",
     "static/js/496.b3bd107d.chunk.js": "/bangtinh_tragop/static/js/496.b3bd107d.chunk.js",
     "index.html": "/bangtinh_tragop/index.html",
-    "main.61eb2e62.css.map": "/bangtinh_tragop/static/css/main.61eb2e62.css.map",
-    "main.b829dfe7.js.map": "/bangtinh_tragop/static/js/main.b829dfe7.js.map",
+    "main.80e6f801.css.map": "/bangtinh_tragop/static/css/main.80e6f801.css.map",
+    "main.7da339d3.js.map": "/bangtinh_tragop/static/js/main.7da339d3.js.map",
     "496.b3bd107d.chunk.js.map": "/bangtinh_tragop/static/js/496.b3bd107d.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.61eb2e62.css",
-    "static/js/main.b829dfe7.js"
+    "static/css/main.80e6f801.css",
+    "static/js/main.7da339d3.js"
   ]
 }
