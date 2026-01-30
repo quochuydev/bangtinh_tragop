@@ -1,5 +1,5 @@
-import React, { useCallback } from 'react';
-import { FormControl, TextField, Box, InputLabel } from '@mui/material';
+import React, { useCallback, useMemo } from 'react';
+import { FormControl, TextField, Box, InputLabel, Paper, Typography } from '@mui/material';
 import { NumericFormat } from 'react-number-format';
 import { TableCalculate } from '../../common';
 
@@ -25,6 +25,21 @@ export const LoanForm: React.FC<LoanFormProps> = ({ data, onFieldChange }) => {
     },
     [onFieldChange]
   );
+
+  const summary = useMemo(() => {
+    if (!data.rows || data.rows.length < 2) return null;
+
+    // Last row is the total row
+    const totalRow = data.rows[data.rows.length - 1];
+    // First payment row (index 1, since index 0 is initial state)
+    const firstPaymentRow = data.rows[1];
+
+    return {
+      totalInterest: totalRow?.interest ?? 0,
+      totalPayment: totalRow?.recurring_number ?? 0,
+      monthlyPayment: firstPaymentRow?.recurring_number ?? 0,
+    };
+  }, [data.rows]);
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
@@ -111,6 +126,49 @@ export const LoanForm: React.FC<LoanFormProps> = ({ data, onFieldChange }) => {
           sx={{ mt: 2 }}
         />
       </FormControl>
+
+      {summary && (
+        <Paper elevation={2} sx={{ p: 2, mt: 1, backgroundColor: '#f5f5f5' }}>
+          <Typography variant="subtitle1" sx={{ fontWeight: 'bold', mb: 1.5 }}>
+            Tóm tắt khoản vay
+          </Typography>
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+            <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+              <Typography variant="body2">Trả hàng tháng:</Typography>
+              <Typography variant="body2" sx={{ fontWeight: 'bold' }}>
+                <NumericFormat
+                  value={summary.monthlyPayment}
+                  displayType="text"
+                  thousandSeparator
+                  suffix=" đ"
+                />
+              </Typography>
+            </Box>
+            <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+              <Typography variant="body2">Tổng tiền lãi:</Typography>
+              <Typography variant="body2" sx={{ fontWeight: 'bold', color: 'error.main' }}>
+                <NumericFormat
+                  value={summary.totalInterest}
+                  displayType="text"
+                  thousandSeparator
+                  suffix=" đ"
+                />
+              </Typography>
+            </Box>
+            <Box sx={{ display: 'flex', justifyContent: 'space-between', borderTop: '1px solid #ddd', pt: 1 }}>
+              <Typography variant="body2">Tổng tiền phải trả:</Typography>
+              <Typography variant="body2" sx={{ fontWeight: 'bold' }}>
+                <NumericFormat
+                  value={summary.totalPayment}
+                  displayType="text"
+                  thousandSeparator
+                  suffix=" đ"
+                />
+              </Typography>
+            </Box>
+          </Box>
+        </Paper>
+      )}
     </Box>
   );
 };
