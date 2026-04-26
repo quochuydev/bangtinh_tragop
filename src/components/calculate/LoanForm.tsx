@@ -77,25 +77,29 @@ export const LoanForm: React.FC<LoanFormProps> = ({ data, onFieldChange }) => {
         />
       </FormControl>
 
-      <FormControl fullWidth>
-        <InputLabel shrink htmlFor="discountMonths" sx={{ fontWeight: 'bold' }}>
-          Số tháng ưu đãi lãi suất
-        </InputLabel>
-        <NumericFormat
-          id="discountMonths"
-          customInput={TextField}
-          onValueChange={handleValueChange('discountMonths')}
-          value={data.discountMonths}
-          decimalScale={0}
-          variant="outlined"
-          size="small"
-          sx={{ mt: 2 }}
-        />
-      </FormControl>
+      {data.calculationType === 'declining' && (
+        <FormControl fullWidth>
+          <InputLabel shrink htmlFor="discountMonths" sx={{ fontWeight: 'bold' }}>
+            Số tháng ưu đãi lãi suất
+          </InputLabel>
+          <NumericFormat
+            id="discountMonths"
+            customInput={TextField}
+            onValueChange={handleValueChange('discountMonths')}
+            value={data.discountMonths}
+            decimalScale={0}
+            variant="outlined"
+            size="small"
+            sx={{ mt: 2 }}
+          />
+        </FormControl>
+      )}
 
       <FormControl fullWidth>
         <InputLabel shrink htmlFor="precentBankBefore" sx={{ fontWeight: 'bold' }}>
-          Lãi suất vay năm (trong thời gian ưu đãi)
+          {data.calculationType === 'pmt'
+            ? 'Lãi suất vay năm'
+            : 'Lãi suất vay năm (trong thời gian ưu đãi)'}
         </InputLabel>
         <NumericFormat
           id="precentBankBefore"
@@ -110,22 +114,24 @@ export const LoanForm: React.FC<LoanFormProps> = ({ data, onFieldChange }) => {
         />
       </FormControl>
 
-      <FormControl fullWidth>
-        <InputLabel shrink htmlFor="precentBankAfter" sx={{ fontWeight: 'bold' }}>
-          Lãi suất vay năm (sau ưu đãi)
-        </InputLabel>
-        <NumericFormat
-          id="precentBankAfter"
-          customInput={TextField}
-          onValueChange={handlePercentChange('precentBankAfter')}
-          value={data.precentBankAfter * 100}
-          decimalScale={2}
-          suffix=" %"
-          variant="outlined"
-          size="small"
-          sx={{ mt: 2 }}
-        />
-      </FormControl>
+      {data.calculationType === 'declining' && (
+        <FormControl fullWidth>
+          <InputLabel shrink htmlFor="precentBankAfter" sx={{ fontWeight: 'bold' }}>
+            Lãi suất vay năm (sau ưu đãi)
+          </InputLabel>
+          <NumericFormat
+            id="precentBankAfter"
+            customInput={TextField}
+            onValueChange={handlePercentChange('precentBankAfter')}
+            value={data.precentBankAfter * 100}
+            decimalScale={2}
+            suffix=" %"
+            variant="outlined"
+            size="small"
+            sx={{ mt: 2 }}
+          />
+        </FormControl>
+      )}
 
       {summary && (
         <Paper elevation={2} sx={{ p: 2, mt: 1, backgroundColor: '#f5f5f5', maxWidth: '100%', boxSizing: 'border-box' }}>

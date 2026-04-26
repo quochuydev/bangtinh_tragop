@@ -74,3 +74,67 @@ export function calculateInstallmentSchedule(params: LoanParams): PeriodLine[] {
 
   return rows;
 }
+
+interface PMTLoanParams {
+  borrowingPrice: number;
+  month: number;
+  annualRate: number;
+}
+
+export function calculatePMTSchedule(params: PMTLoanParams): PeriodLine[] {
+  const { borrowingPrice, month, annualRate } = params;
+
+  if (!borrowingPrice || borrowingPrice <= 0 || !month || month <= 0) {
+    return [createPeriodLine('', null, null, null, borrowingPrice || 0)];
+  }
+
+  const monthlyRate = annualRate / 12;
+  const pmt =
+    monthlyRate === 0
+      ? borrowingPrice / month
+      : (borrowingPrice * monthlyRate) / (1 - Math.pow(1 + monthlyRate, -month));
+
+  const rows: PeriodLine[] = [createPeriodLine('', null, null, null, borrowingPrice)];
+
+  let totalRecurringNumber = 0;
+  let totalInterest = 0;
+
+  for (let i = 1; i <= month; i++) {
+    const debtLast = rows[i - 1].debt || 0;
+    const interest = debtLast * monthlyRate;
+    let origin = pmt - interest;
+    let recurringNumber = pmt;
+
+    if (i === month) {
+      origin = debtLast;
+      recurringNumber = origin + interest;
+    }
+
+    const debt = roundNumber(debtLast - origin);
+
+    totalRecurringNumber += recurringNumber;
+    totalInterest += interest;
+
+    rows.push(
+      createPeriodLine(
+        String(i),
+        roundNumber(recurringNumber),
+        roundNumber(interest),
+        roundNumber(origin),
+        debt
+      )
+    );
+  }
+
+  rows.push(
+    createPeriodLine(
+      'TOTAL',
+      roundNumber(totalRecurringNumber),
+      roundNumber(totalInterest),
+      roundNumber(rows[0].debt || 0),
+      null
+    )
+  );
+
+  return rows;
+}

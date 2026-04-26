@@ -1,5 +1,5 @@
 import { TableCalculate, ActionTypes, LOAN_CONSTANTS } from '../common';
-import { calculateInstallmentSchedule } from '../utils/loanCalculations';
+import { calculateInstallmentSchedule, calculatePMTSchedule } from '../utils/loanCalculations';
 import type { UnknownAction } from 'redux';
 
 export type TableCalculateState = TableCalculate;
@@ -11,6 +11,7 @@ const initialState: TableCalculateState = {
   precentBankBefore: LOAN_CONSTANTS.DEFAULT_INTEREST_RATE_FIRST_6_MONTHS,
   precentBankAfter: LOAN_CONSTANTS.DEFAULT_INTEREST_RATE_AFTER,
   discountMonths: LOAN_CONSTANTS.PROMOTIONAL_PERIOD_MONTHS,
+  calculationType: 'declining',
 };
 
 interface CalculateActionPayload {
@@ -28,14 +29,21 @@ export const tableCalculateReducer = (
     const calculateAction = action as CalculateActionPayload;
     const data = { ...state, ...calculateAction.payload };
 
-    // Calculate installment schedule
-    data.rows = calculateInstallmentSchedule({
-      borrowingPrice: data.borrowingPrice,
-      month: data.month,
-      precentBankBefore: data.precentBankBefore,
-      precentBankAfter: data.precentBankAfter,
-      discountMonths: data.discountMonths,
-    });
+    if (data.calculationType === 'pmt') {
+      data.rows = calculatePMTSchedule({
+        borrowingPrice: data.borrowingPrice,
+        month: data.month,
+        annualRate: data.precentBankBefore,
+      });
+    } else {
+      data.rows = calculateInstallmentSchedule({
+        borrowingPrice: data.borrowingPrice,
+        month: data.month,
+        precentBankBefore: data.precentBankBefore,
+        precentBankAfter: data.precentBankAfter,
+        discountMonths: data.discountMonths,
+      });
+    }
 
     return data;
   }
