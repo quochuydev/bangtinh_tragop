@@ -40,6 +40,6 @@ export const LOAN_CONSTANTS = {
 
 export const PMT_DEFAULTS = {
   borrowingPrice: 240000000,
-  month: 24,
-  annualRate: 0.145, // 14.5%
+  month: 36,
+  annualRate: 0.08, // 8%
 } as const;
