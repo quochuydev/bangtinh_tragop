@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/bangtinh_tragop/static/css/main.80e6f801.css",
-    "main.js": "/bangtinh_tragop/static/js/main.9cef90ee.js",
+    "main.js": "/bangtinh_tragop/static/js/main.121c1986.js",
     "static/js/496.b3bd107d.chunk.js": "/bangtinh_tragop/static/js/496.b3bd107d.chunk.js",
     "index.html": "/bangtinh_tragop/index.html",
     "main.80e6f801.css.map": "/bangtinh_tragop/static/css/main.80e6f801.css.map",
-    "main.9cef90ee.js.map": "/bangtinh_tragop/static/js/main.9cef90ee.js.map",
+    "main.121c1986.js.map": "/bangtinh_tragop/static/js/main.121c1986.js.map",
     "496.b3bd107d.chunk.js.map": "/bangtinh_tragop/static/js/496.b3bd107d.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.80e6f801.css",
-    "static/js/main.9cef90ee.js"
+    "static/js/main.121c1986.js"
   ]
 }
